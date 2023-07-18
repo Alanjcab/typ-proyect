@@ -99,7 +99,7 @@
 }
 /*main*/
 #fondoMain {
-  background: linear-gradient(rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0.5)), url(../../img/./shutterstock-1607753203-2_ai1.jpg);
+  background: linear-gradient(rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0.5)), url(../../img/./BackgroundPrincipal.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.65 black;
@@ -129,7 +129,7 @@
   letter-spacing: 3px;
 }
 #fondoMain .box-div .btn-contacto:hover {
-  background-color: rgba(71, 71, 71, 0.889);
+  background-color: rgba(37, 37, 37, 0.889);
 }
 @media (max-width: 768px) {
   #fondoMain .box-div #tituloPrincipal {
@@ -179,7 +179,7 @@
   justify-content: space-evenly;
   width: 350px;
   height: 250px;
-  background-image: linear-gradient(to right top, rgba(0, 0, 0, 0.596), rgba(125, 125, 125, 0.474));
+  background-image: linear-gradient(to right top, rgba(0, 0, 0, 0.833), rgba(156, 156, 156, 0.477));
   box-shadow: 2px 0px 10px rgb(0, 0, 0);
   border-radius: 10px 10px 10px 10px;
   color: white;
@@ -201,7 +201,7 @@
   padding: 10px;
 }
 #fondoMain .box-containerCard .card .enlaceCard:hover {
-  background-color: rgba(9, 9, 9, 0.366);
+  background-color: rgba(9, 9, 9, 0.648);
 }
 @media (max-width: 768px) {
   #fondoMain .box-containerCard .card {
@@ -228,10 +228,11 @@
 
 /*footer*/
 footer {
-  background: linear-gradient(rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0.5)), url(../../img/./fondo-de-apartados1.jpg);
+  background: linear-gradient(rgba(5, 7, 12, 0.5), rgba(5, 7, 12, 0.5)), url(../../img/./FondoFooter.png);
   background-position: bottom;
   opacity: 0.75 black;
   color: rgb(255, 255, 255);
+  background-size: cover;
 }
 footer .containerFooter {
   margin-top: 50px;
