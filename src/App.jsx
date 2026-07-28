@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./pages/home";
@@ -8,20 +8,18 @@ import ScrollTop from "./components/scrollTop";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="app-container">
-        <ScrollTop />
-        <Navbar />
+    <div className="app-container">
+      <ScrollTop />
+      <Navbar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contacto" element={<Contacto />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contacto" element={<Contacto />} />
+      </Routes>
 
-        <Footer />
-        <WhatsappButton />
-      </div>
-    </BrowserRouter>
+      <Footer />
+      <WhatsappButton />
+    </div>
   );
 }
 
