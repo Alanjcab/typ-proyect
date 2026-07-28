@@ -1,54 +1,33 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
 
-  const irASeccion = (id) => {
-    if (location.pathname === "/") {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+  useEffect(() => {
+    const controlarScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
 
-      return;
-    }
+    controlarScroll();
+    window.addEventListener("scroll", controlarScroll);
 
-    navigate("/");
-
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 100);
-  };
+    return () => {
+      window.removeEventListener("scroll", controlarScroll);
+    };
+  }, []);
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
       <div className="navbar-container">
-         <Link to="/" className="navbar-logo">
-        <img src="/logoTyP.png" alt="Logo Estudio Jurídico" />
-        <span>Estudio Jurídico</span>
+        <Link to="/" className="navbar-logo">
+          <img src="/logoTyP.png" alt="Logo del Estudio Jurídico" />
+          <span className="navbar-logo-text">Estudio Jurídico</span>
         </Link>
 
         <nav className="navbar-links">
-          <button
-            type="button"
-            className="navbar-link-button"
-            onClick={() => irASeccion("nosotros")}
-          >
-            Nosotros
-          </button>
-
-          <button
-            type="button"
-            className="navbar-link-button"
-            onClick={() => irASeccion("servicios")}
-          >
-            Servicios
-          </button>
-
+          <Link to="/#nosotros">Nosotros</Link>
+          <Link to="/#servicios">Servicios</Link>
           <Link to="/contacto">Contacto</Link>
         </nav>
       </div>
