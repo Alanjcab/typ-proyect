@@ -1,6 +1,7 @@
 import Hero from "../components/hero";
 import Nosotros from "../components/nosotros";
 import Servicios from "../components/servicios";
+import PorQueElegirnos from "../components/porQueElegirnos";
 
 function Home() {
   return (
@@ -8,6 +9,7 @@ function Home() {
       <Hero />
       <Nosotros />
       <Servicios />
+      <PorQueElegirnos />
     </main>
   );
 }

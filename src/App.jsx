@@ -3,6 +3,8 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Home from "./pages/home";
 import Contacto from "./pages/contacto";
+import WhatsappButton from "./components/whatsappButton";
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         </Routes>
 
         <Footer />
+        <WhatsappButton />
       </div>
     </BrowserRouter>
   );
