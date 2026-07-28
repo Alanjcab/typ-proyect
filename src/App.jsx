@@ -4,12 +4,13 @@ import Footer from "./components/footer";
 import Home from "./pages/home";
 import Contacto from "./pages/contacto";
 import WhatsappButton from "./components/whatsappButton";
-
+import ScrollTop from "./components/scrollTop";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
+        <ScrollTop />
         <Navbar />
 
         <Routes>

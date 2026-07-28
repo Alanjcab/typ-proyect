@@ -61,7 +61,6 @@ return (
       <section className="contacto-container">
         <div className="contacto-header">
           <h1>Contacto</h1>
-
           <p>
             Dejanos tu consulta y nos pondremos en contacto con vos.
           </p>
