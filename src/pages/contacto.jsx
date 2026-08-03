@@ -13,22 +13,42 @@ function Contacto() {
     medioContactoPreferido: "whatsapp",
   });
 
+  const [modal, setModal] = useState({
+    visible: false,
+    tipo: "",
+    titulo: "",
+    mensaje: "",
+  });
+
+  const [enviando, setEnviando] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({
-      ...formData,
+    setFormData((datosAnteriores) => ({
+      ...datosAnteriores,
       [name]: value,
+    }));
+  };
+
+  const cerrarModal = () => {
+    setModal({
+      visible: false,
+      tipo: "",
+      titulo: "",
+      mensaje: "",
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (enviando) return;
+
+    setEnviando(true);
+
     try {
       await crearConsulta(formData);
-
-      alert("Consulta enviada correctamente");
 
       setFormData({
         nombre: "",
@@ -39,9 +59,27 @@ function Contacto() {
         mensaje: "",
         medioContactoPreferido: "whatsapp",
       });
+
+      setModal({
+        visible: true,
+        tipo: "exito",
+        titulo: "Consulta enviada",
+        mensaje:
+          "Recibimos tu consulta correctamente. Nos comunicaremos con vos a la brevedad.",
+      });
     } catch (error) {
       console.error(error);
-      alert("No se pudo enviar la consulta");
+
+      setModal({
+        visible: true,
+        tipo: "error",
+        titulo: "No pudimos enviar la consulta",
+        mensaje:
+          error.message ||
+          "Ocurrió un inconveniente. Por favor, intentá nuevamente en unos minutos.",
+      });
+    } finally {
+      setEnviando(false);
     }
   };
 
@@ -104,6 +142,7 @@ function Contacto() {
                   name="nombre"
                   value={formData.nombre}
                   onChange={handleChange}
+                  disabled={enviando}
                   required
                 />
               </div>
@@ -117,6 +156,7 @@ function Contacto() {
                   name="apellido"
                   value={formData.apellido}
                   onChange={handleChange}
+                  disabled={enviando}
                   required
                 />
               </div>
@@ -132,6 +172,7 @@ function Contacto() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  disabled={enviando}
                   required
                 />
               </div>
@@ -145,6 +186,7 @@ function Contacto() {
                   name="telefono"
                   value={formData.telefono}
                   onChange={handleChange}
+                  disabled={enviando}
                   required
                 />
               </div>
@@ -160,6 +202,7 @@ function Contacto() {
                 name="areaConsulta"
                 value={formData.areaConsulta}
                 onChange={handleChange}
+                disabled={enviando}
                 required
               >
                 <option value="">
@@ -207,6 +250,7 @@ function Contacto() {
                       formData.medioContactoPreferido === "whatsapp"
                     }
                     onChange={handleChange}
+                    disabled={enviando}
                   />
 
                   WhatsApp
@@ -221,6 +265,7 @@ function Contacto() {
                       formData.medioContactoPreferido === "telefono"
                     }
                     onChange={handleChange}
+                    disabled={enviando}
                   />
 
                   Teléfono
@@ -235,6 +280,7 @@ function Contacto() {
                       formData.medioContactoPreferido === "email"
                     }
                     onChange={handleChange}
+                    disabled={enviando}
                   />
 
                   Email
@@ -252,6 +298,7 @@ function Contacto() {
                 name="mensaje"
                 value={formData.mensaje}
                 onChange={handleChange}
+                disabled={enviando}
                 rows="6"
                 required
               />
@@ -260,12 +307,59 @@ function Contacto() {
             <button
               className="form-button"
               type="submit"
+              disabled={enviando}
             >
-              Enviar consulta
+              {enviando ? "Enviando..." : "Enviar consulta"}
             </button>
           </form>
         </div>
       </section>
+
+      {modal.visible && (
+        <div
+          className="consulta-modal-overlay"
+          role="presentation"
+          onClick={cerrarModal}
+        >
+          <section
+            className={`consulta-modal consulta-modal-${modal.tipo}`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="consulta-modal-titulo"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="consulta-modal-close"
+              onClick={cerrarModal}
+              aria-label="Cerrar mensaje"
+            >
+              ×
+            </button>
+
+            <div
+              className="consulta-modal-icon"
+              aria-hidden="true"
+            >
+              {modal.tipo === "exito" ? "✓" : "!"}
+            </div>
+
+            <h2 id="consulta-modal-titulo">
+              {modal.titulo}
+            </h2>
+
+            <p>{modal.mensaje}</p>
+
+            <button
+              type="button"
+              className="consulta-modal-button"
+              onClick={cerrarModal}
+            >
+              Entendido
+            </button>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
