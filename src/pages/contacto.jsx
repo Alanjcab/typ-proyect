@@ -63,7 +63,7 @@ function Contacto() {
       setModal({
         visible: true,
         tipo: "exito",
-        titulo: "Consulta enviada",
+        titulo: "¡Gracias por comunicarte con TyP Estudio Jurídico!",
         mensaje:
           "Recibimos tu consulta correctamente. Nos comunicaremos con vos a la brevedad.",
       });
