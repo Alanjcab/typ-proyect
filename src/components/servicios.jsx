@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-/*guardo la informacion de las tarjetas en un array*/
 const servicios = [
   {
     numero: "01",
@@ -42,42 +41,63 @@ const servicios = [
 
 function Servicios() {
   return (
-    <section className="servicios" id="servicios">
+    <section
+      className="servicios"
+      id="servicios"
+    >
       <div className="servicios-container">
         <div className="servicios-header">
-          <p className="section-eyebrow">Servicios</p>
+          <p className="section-eyebrow">
+            Servicios
+          </p>
 
           <h2 className="servicios-title">
             Soluciones pensadas para cada necesidad previsional
           </h2>
 
           <p className="servicios-intro">
-            Brindamos un acompañamiento profesional, claro y cercano durante
-            cada etapa del trámite.
+            Brindamos un acompañamiento profesional, claro y cercano
+            durante cada etapa del trámite.
           </p>
         </div>
 
         <div className="servicios-grid">
           {servicios.map((servicio) => (
-            <article className="servicio-card" key={servicio.numero}>
+            <article
+              className="servicio-card"
+              key={servicio.numero}
+            >
               <div className="servicio-card-top">
-                <span className="servicio-number">{servicio.numero}</span>
+                <span className="servicio-number">
+                  {servicio.numero}
+                </span>
 
-                <span className="servicio-icon" aria-hidden="true">
+                <span
+                  className="servicio-icon"
+                  aria-hidden="true"
+                >
                   ⚖
                 </span>
               </div>
 
-              <h3 className="servicio-title">{servicio.titulo}</h3>
+              <h3 className="servicio-title">
+                {servicio.titulo}
+              </h3>
 
               <p className="servicio-description">
                 {servicio.descripcion}
               </p>
 
-            <Link to="/contacto" className="servicio-link">
+              <Link
+                to="/contacto"
+                className="servicio-link"
+              >
                 Consultar
-                <span aria-hidden="true">→</span>
-            </Link>
+
+                <span aria-hidden="true">
+                  →
+                </span>
+              </Link>
             </article>
           ))}
         </div>

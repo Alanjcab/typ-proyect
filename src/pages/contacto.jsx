@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { crearConsulta } from "../services/consultasService";
+import contactoImg from "../assets/images/contacto/contacto.jpg";
 
 function Contacto() {
   const [formData, setFormData] = useState({
@@ -25,9 +26,7 @@ function Contacto() {
     e.preventDefault();
 
     try {
-      const data = await crearConsulta(formData);
-
-      console.log(data);
+      await crearConsulta(formData);
 
       alert("Consulta enviada correctamente");
 
@@ -47,13 +46,50 @@ function Contacto() {
   };
 
   return (
-    <>
-      <main className="contacto-page">
-        <section className="contacto-container">
-          <div className="contacto-header">
-            <h1>Contacto</h1>
+    <main className="contacto-page">
+      <section className="contacto-layout">
+        <div className="contacto-visual">
+          <img
+            src={contactoImg}
+            alt="Mazo de juez sobre un escritorio jurídico"
+          />
+
+          <div className="contacto-visual-overlay" />
+
+          <div className="contacto-visual-content">
+            <p className="contacto-visual-eyebrow">
+              Asesoramiento profesional
+            </p>
+
+            <h2>Estamos para escucharte</h2>
+
             <p>
-              Dejanos tu consulta y nos pondremos en contacto con vos.
+              Contanos tu situación y nos comunicaremos con vos para
+              brindarte una orientación clara y personalizada.
+            </p>
+          </div>
+
+          <div className="contacto-trust-card">
+            <strong>Tu consulta es confidencial</strong>
+
+            <ul>
+              <li>Atención personalizada</li>
+              <li>Comunicación clara</li>
+              <li>Seguimiento del trámite</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="contacto-container">
+          <div className="contacto-header">
+            <p className="section-eyebrow">
+              Contacto
+            </p>
+
+            <h1>Realizá tu consulta</h1>
+
+            <p>
+              Completá el formulario y nos pondremos en contacto con vos.
             </p>
           </div>
 
@@ -61,6 +97,7 @@ function Contacto() {
             <div className="form-grid">
               <div className="form-group">
                 <label htmlFor="nombre">Nombre</label>
+
                 <input
                   type="text"
                   id="nombre"
@@ -73,6 +110,7 @@ function Contacto() {
 
               <div className="form-group">
                 <label htmlFor="apellido">Apellido</label>
+
                 <input
                   type="text"
                   id="apellido"
@@ -87,6 +125,7 @@ function Contacto() {
             <div className="form-grid">
               <div className="form-group">
                 <label htmlFor="email">Email</label>
+
                 <input
                   type="email"
                   id="email"
@@ -99,6 +138,7 @@ function Contacto() {
 
               <div className="form-group">
                 <label htmlFor="telefono">Teléfono</label>
+
                 <input
                   type="tel"
                   id="telefono"
@@ -111,7 +151,9 @@ function Contacto() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="areaConsulta">Área de consulta</label>
+              <label htmlFor="areaConsulta">
+                Área de consulta
+              </label>
 
               <select
                 id="areaConsulta"
@@ -120,18 +162,40 @@ function Contacto() {
                 onChange={handleChange}
                 required
               >
-                <option value="">Seleccioná un área</option>
-                <option value="laboral">Derecho Laboral</option>
-                <option value="civil">Derecho Civil</option>
-                <option value="familia">Derecho de Familia</option>
-                <option value="sucesiones">Sucesiones</option>
-                <option value="penal">Derecho Penal</option>
-                <option value="asesoramiento">Asesoramiento General</option>
+                <option value="">
+                  Seleccioná un área
+                </option>
+
+                <option value="laboral">
+                  Derecho Laboral
+                </option>
+
+                <option value="civil">
+                  Derecho Civil
+                </option>
+
+                <option value="familia">
+                  Derecho de Familia
+                </option>
+
+                <option value="sucesiones">
+                  Sucesiones
+                </option>
+
+                <option value="penal">
+                  Derecho Penal
+                </option>
+
+                <option value="asesoramiento">
+                  Asesoramiento General
+                </option>
               </select>
             </div>
 
             <div className="form-group">
-              <label>¿Cómo preferís que nos comuniquemos con vos?</label>
+              <label>
+                ¿Cómo preferís que nos comuniquemos con vos?
+              </label>
 
               <div className="radio-group">
                 <label className="radio-option">
@@ -144,6 +208,7 @@ function Contacto() {
                     }
                     onChange={handleChange}
                   />
+
                   WhatsApp
                 </label>
 
@@ -157,6 +222,7 @@ function Contacto() {
                     }
                     onChange={handleChange}
                   />
+
                   Teléfono
                 </label>
 
@@ -170,6 +236,7 @@ function Contacto() {
                     }
                     onChange={handleChange}
                   />
+
                   Email
                 </label>
               </div>
@@ -190,13 +257,16 @@ function Contacto() {
               />
             </div>
 
-            <button className="form-button" type="submit">
+            <button
+              className="form-button"
+              type="submit"
+            >
               Enviar consulta
             </button>
           </form>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </main>
   );
 }
 
