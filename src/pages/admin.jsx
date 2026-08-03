@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { obtenerConsultas } from "../services/consultasService";
 import "../styles/admin.css";
 import Header from "../components/admin/header";
@@ -15,6 +15,7 @@ const Admin = () => {
     const [mensajeError, setMensajeError] = useState("");
     const [consultaSeleccionada, setConsultaSeleccionada] = useState(null);
     const [busqueda, setBusqueda] = useState("");
+    const detalleRef = useRef(null);
 
     const usuarioGuardado = localStorage.getItem("usuario");
 
@@ -62,6 +63,26 @@ const Admin = () => {
 
         setConsultaSeleccionada(consultaActualizada);
     };
+
+    const seleccionarConsulta = (consulta) => {
+        setConsultaSeleccionada(consulta);
+    };
+
+    useEffect(() => {
+        if (!consultaSeleccionada) return;
+
+        const esResponsive = window.matchMedia(
+            "(max-width: 900px)"
+        ).matches;
+
+        if (esResponsive) {
+            detalleRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    }, [consultaSeleccionada]);
+
 
     const textoBusqueda = busqueda.trim().toLowerCase();
 
@@ -118,18 +139,19 @@ const Admin = () => {
                                         consultaSeleccionada
                                     }
                                     seleccionarConsulta={
-                                        setConsultaSeleccionada
+                                        seleccionarConsulta
                                     }
                                 />
                             )}
                         </div>
-
-                        <ConsultaDetail
-                            consulta={consultaSeleccionada}
-                            onConsultaActualizada={
-                                manejarConsultaActualizada
-                            }
-                        />
+                        <div ref={detalleRef}>
+                            <ConsultaDetail
+                                consulta={consultaSeleccionada}
+                                onConsultaActualizada={
+                                    manejarConsultaActualizada
+                                }
+                            />
+                        </div>
                     </section>
                 </>
             )}
