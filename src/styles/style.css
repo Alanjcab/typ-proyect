@@ -95,14 +95,14 @@ a {
 .navbar-logo {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   color: white;
   text-decoration: none;
 }
 
 .navbar-logo img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 }
 
@@ -112,29 +112,32 @@ a {
   gap: 28px;
 }
 
-.navbar-links a {
-  font-size: 0.98rem;
+.navbar-links a,
+.navbar-link-button {
   color: white;
+  font-family: inherit;
+  font-size: 1.08rem;
+  font-weight: 500;
+  text-decoration: none;
   transition: color 0.2s ease;
-}
-
-.navbar-links a:hover {
-  color: var(--color-accent);
 }
 
 .navbar-link-button {
   padding: 0;
   border: none;
   background: transparent;
-  color: white;
-  font: inherit;
-  font-size: 0.98rem;
   cursor: pointer;
-  transition: color 0.2s ease;
 }
 
+.navbar-links a:hover,
 .navbar-link-button:hover {
   color: var(--color-accent);
+}
+
+.navbar-logo-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 /* contacto*/
@@ -645,6 +648,31 @@ a {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
   font-size: 0.9rem;
+}
+
+.footer-bottom {
+  margin-top: 35px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+}
+
+.footer-copy,
+.footer-credit {
+  margin: 6px 0;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.footer-credit a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-credit a:hover {
+  color: #ffffff;
 }
 
 @media (max-width: 700px) {

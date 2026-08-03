@@ -1,8 +1,7 @@
 import { FaWhatsapp } from "react-icons/fa";
 
 function WhatsappButton() {
-  const telefono = "5492236219418";
-
+  const telefono = "5492235563845"; /*nuemro del cleinte*/
   const mensaje =
     "Hola, quisiera realizar una consulta sobre asesoramiento previsional.";
 

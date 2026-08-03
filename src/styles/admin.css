@@ -1,3 +1,7 @@
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 :root {
   --admin-navy: #0b1f36;
   --admin-navy-light: #173a63;
@@ -17,9 +21,14 @@
   --admin-cyan: #3c86c8;
 }
 
+/* =====================================================
+   PÁGINA
+===================================================== */
+
 .admin-page {
   min-height: 100vh;
   padding: 32px;
+
   background:
     linear-gradient(
       180deg,
@@ -28,25 +37,34 @@
       var(--admin-background) 230px,
       var(--admin-background) 100%
     );
+
   color: var(--admin-text);
 }
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
 
 .admin-header {
   max-width: 1200px;
   margin: 0 auto 32px;
   padding: 28px 30px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
+
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 18px;
+
   background:
     linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.08),
       rgba(255, 255, 255, 0.02)
     );
+
   box-shadow: 0 18px 45px rgba(2, 17, 35, 0.25);
   color: #ffffff;
 }
@@ -79,18 +97,28 @@
   color: #cfdded;
 }
 
+/* =====================================================
+   BOTONES GENERALES
+===================================================== */
+
 .logout-button,
-.detail-button {
+.detail-button,
+.save-button {
   border: none;
   border-radius: 10px;
-  padding: 11px 18px;
   font: inherit;
   font-weight: 800;
   cursor: pointer;
+
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.logout-button,
+.detail-button {
+  padding: 11px 18px;
 }
 
 .logout-button {
@@ -99,8 +127,14 @@
   color: var(--admin-navy);
 }
 
+.detail-button {
+  background-color: var(--admin-navy);
+  color: #ffffff;
+}
+
 .logout-button:hover,
-.detail-button:hover {
+.detail-button:hover,
+.save-button:hover:not(:disabled) {
   transform: translateY(-2px);
 }
 
@@ -108,9 +142,19 @@
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
 }
 
+.detail-button:hover {
+  background-color: var(--admin-navy-light);
+  box-shadow: 0 10px 22px rgba(11, 31, 54, 0.2);
+}
+
+/* =====================================================
+   RESUMEN
+===================================================== */
+
 .admin-summary {
   max-width: 1200px;
   margin: 0 auto 32px;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
@@ -119,10 +163,13 @@
 .summary-card {
   position: relative;
   overflow: hidden;
+
   min-height: 138px;
   padding: 22px;
+
   border: 1px solid rgba(14, 42, 72, 0.08);
   border-radius: 16px;
+
   background-color: var(--admin-surface);
   box-shadow: 0 12px 30px rgba(27, 55, 88, 0.1);
 }
@@ -150,6 +197,7 @@
 .summary-card span {
   display: block;
   margin-bottom: 18px;
+
   color: var(--admin-text-soft);
   font-size: 0.92rem;
   font-weight: 700;
@@ -157,54 +205,110 @@
 
 .summary-card strong {
   display: block;
+
+  color: var(--admin-navy);
   font-size: 2.35rem;
   line-height: 1;
-  color: var(--admin-navy);
+}
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+.consultas-toolbar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 24px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.consultas-toolbar input,
+.consultas-heading input {
+  width: min(100%, 620px);
+  padding: 15px 17px;
+
+  border: 1px solid #d2dbe7;
+  border-radius: 12px;
+
+  background-color: #ffffff;
+  color: var(--admin-text);
+  font: inherit;
+
+  outline: none;
+  box-shadow: 0 8px 22px rgba(18, 42, 72, 0.06);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.consultas-toolbar input:focus,
+.consultas-heading input:focus {
+  border-color: var(--admin-blue);
+  box-shadow: 0 0 0 4px rgba(47, 111, 237, 0.12);
+  transform: translateY(-1px);
+}
+
+.consultas-toolbar input::placeholder,
+.consultas-heading input::placeholder {
+  color: #7b8798;
+}
+
+/* =====================================================
+   CONTENIDO PRINCIPAL
+===================================================== */
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.85fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.dashboard-list {
+  min-width: 0;
 }
 
 .consultas-section {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 30px;
+
   border: 1px solid var(--admin-border);
   border-radius: 18px;
+
   background-color: var(--admin-surface-soft);
   box-shadow: 0 18px 42px rgba(27, 55, 88, 0.11);
 }
 
 .consultas-heading {
+  margin-bottom: 26px;
+
   display: flex;
   justify-content: space-between;
   align-items: end;
   gap: 24px;
-  margin-bottom: 26px;
 }
 
 .consultas-heading h2 {
   margin: 0;
-  font-size: 1.9rem;
+
   color: var(--admin-navy);
+  font-size: 1.9rem;
 }
 
 .consultas-heading input {
   width: min(100%, 340px);
   padding: 13px 15px;
-  border: 1px solid #c5d0dd;
-  border-radius: 10px;
-  outline: none;
-  background-color: #ffffff;
-  color: var(--admin-text);
-  font: inherit;
-  box-shadow: 0 5px 16px rgba(28, 56, 88, 0.06);
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
 }
 
-.consultas-heading input:focus {
-  border-color: var(--admin-blue);
-  box-shadow: 0 0 0 4px rgba(47, 111, 237, 0.13);
-}
+/* =====================================================
+   LISTA DE CONSULTAS
+===================================================== */
 
 .consultas-list {
   display: grid;
@@ -214,21 +318,26 @@
 .consulta-card {
   position: relative;
   overflow: hidden;
+
   padding: 22px 22px 22px 26px;
+
   border: 1px solid var(--admin-border);
   border-radius: 14px;
+
   background-color: var(--admin-surface);
   box-shadow: 0 8px 22px rgba(27, 55, 88, 0.07);
+
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .consulta-card::before {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
+
   width: 6px;
   background-color: var(--admin-cyan);
 }
@@ -239,6 +348,18 @@
   box-shadow: 0 14px 30px rgba(27, 55, 88, 0.13);
 }
 
+.consulta-card-selected {
+  border-color: var(--admin-blue);
+
+  box-shadow:
+    0 0 0 3px rgba(47, 111, 237, 0.14),
+    0 14px 30px rgba(27, 55, 88, 0.13);
+}
+
+.consulta-card-selected::before {
+  background-color: var(--admin-blue);
+}
+
 .consulta-main {
   display: flex;
   justify-content: space-between;
@@ -246,15 +367,22 @@
   gap: 26px;
 }
 
+.consulta-info {
+  min-width: 0;
+}
+
 .consulta-info h3 {
   margin: 0 0 7px;
-  font-size: 1.2rem;
+
   color: var(--admin-navy);
+  font-size: 1.2rem;
 }
 
 .consulta-info p {
   margin: 0 0 15px;
+
   color: var(--admin-text-soft);
+  overflow-wrap: anywhere;
 }
 
 .consulta-meta {
@@ -265,10 +393,13 @@
 
 .consulta-meta span {
   padding: 7px 11px;
+
   border: 1px solid #d8e1eb;
   border-radius: 999px;
+
   background-color: #edf3f9;
   color: #42536a;
+
   font-size: 0.88rem;
   font-weight: 650;
 }
@@ -279,11 +410,18 @@
   gap: 12px;
 }
 
+/* =====================================================
+   ESTADOS
+===================================================== */
+
 .estado-badge {
   padding: 7px 12px;
+
   border-radius: 999px;
+
   font-size: 0.83rem;
   font-weight: 800;
+  text-align: center;
   text-transform: capitalize;
   white-space: nowrap;
 }
@@ -308,132 +446,32 @@
   color: #23663d;
 }
 
-.detail-button {
-  background-color: var(--admin-navy);
-  color: #ffffff;
-}
-
-.detail-button:hover {
-  background-color: var(--admin-navy-light);
-  box-shadow: 0 10px 22px rgba(11, 31, 54, 0.2);
-}
-
-.admin-message {
-  padding: 28px 0;
-  text-align: center;
-  color: var(--admin-text-soft);
-}
-
-.admin-error {
-  color: #a32929;
-}
-
-@media (max-width: 900px) {
-  .admin-summary {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .consulta-main {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .consulta-actions {
-    justify-content: space-between;
-  }
-}
-
-@media (max-width: 600px) {
-  .admin-page {
-    padding: 18px;
-    background:
-      linear-gradient(
-        180deg,
-        var(--admin-navy) 0,
-        var(--admin-navy) 310px,
-        var(--admin-background) 310px,
-        var(--admin-background) 100%
-      );
-  }
-
-  .admin-header,
-  .consultas-heading {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .admin-header {
-    padding: 24px 22px;
-  }
-
-  .logout-button {
-    width: 100%;
-  }
-
-  .admin-summary {
-    grid-template-columns: 1fr;
-  }
-
-  .consultas-section {
-    padding: 22px 18px;
-  }
-
-  .consultas-heading input {
-    width: 100%;
-  }
-
-  .consulta-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .detail-button,
-  .estado-badge {
-    text-align: center;
-  }
-}
-
-.consulta-card-selected {
-  border-color: var(--admin-blue);
-  box-shadow:
-    0 0 0 3px rgba(47, 111, 237, 0.14),
-    0 14px 30px rgba(27, 55, 88, 0.13);
-}
-
-.consulta-card-selected::before {
-  background-color: var(--admin-blue);
-} 
-
-.dashboard-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.85fr);
-  gap: 22px;
-  align-items: start;
-}
-
-.dashboard-list {
-  min-width: 0;
-}
+/* =====================================================
+   DETALLE DE CONSULTA
+===================================================== */
 
 .consulta-detail {
-  min-height: 320px;
-  padding: 28px;
-  border: 1px solid var(--admin-border);
-  border-radius: 18px;
-  background-color: var(--admin-surface);
-  box-shadow: 0 16px 36px rgba(27, 55, 88, 0.1);
   position: sticky;
   top: 24px;
+
+  min-height: 320px;
+  padding: 28px;
+
+  border: 1px solid var(--admin-border);
+  border-radius: 18px;
+
+  background-color: var(--admin-surface);
+  box-shadow: 0 16px 36px rgba(27, 55, 88, 0.1);
 }
 
 .consulta-detail-empty {
   min-height: 260px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   text-align: center;
 }
 
@@ -446,15 +484,37 @@
 .consulta-detail-empty p:last-child {
   max-width: 330px;
   margin: 12px 0 0;
+
   color: var(--admin-text-soft);
   line-height: 1.6;
 }
 
 .consulta-detail-header {
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
+
+  border-bottom: 1px solid #e6ebf2;
+}
+
+.consulta-detail-label,
+.detail-label,
+.consulta-detail-title {
+  display: block;
+
+  color: var(--admin-text-soft);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.consulta-detail-label {
+  margin-bottom: 7px;
 }
 
 .consulta-detail-header h2 {
@@ -462,250 +522,133 @@
   font-size: 1.65rem;
 }
 
-.consulta-detail-header > div > p:last-child {
+.consulta-detail-header p {
   margin: 0;
   color: var(--admin-text-soft);
 }
 
-@media (max-width: 900px) {
-  .dashboard-content {
-    grid-template-columns: 1fr;
-  }
-
-  .consulta-detail {
-    position: static;
-  }
-}
-
+.consulta-detail-content,
 .consulta-detail-body {
-  margin-top: 28px;
   display: grid;
   gap: 16px;
 }
 
+.consulta-detail-group,
 .detail-item {
   padding: 16px;
+
   border: 1px solid var(--admin-border);
   border-radius: 12px;
+
   background-color: var(--admin-surface-soft);
 }
 
+.consulta-detail-title,
 .detail-label {
-  display: block;
-  margin-bottom: 7px;
-  color: var(--admin-text-soft);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
+.consulta-detail-group p,
 .detail-item p {
-  margin: 0;
+  margin: 6px 0;
+
   color: var(--admin-text);
   line-height: 1.55;
   overflow-wrap: anywhere;
+}
+
+.consulta-detail-group strong {
+  color: var(--admin-navy);
 }
 
 .detail-message p {
   white-space: pre-wrap;
 }
 
-.detail-status-section {
-  padding-top: 22px;
-  border-top: 1px solid var(--admin-border);
-}
-
-.detail-status-section select {
-  width: 100%;
-  margin-bottom: 14px;
-  padding: 13px 14px;
-  border: 1px solid #c5d0dd;
-  border-radius: 10px;
-  background-color: #ffffff;
-  color: var(--admin-text);
-  font: inherit;
-}
-
-.detail-status-section select:disabled {
-  background-color: #edf1f5;
-  color: var(--admin-text-soft);
-  cursor: not-allowed;
-}
-
-.save-button {
-  width: 100%;
-  padding: 13px 18px;
-  border: none;
-  border-radius: 10px;
-  background-color: var(--admin-blue);
-  color: #ffffff;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.save-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  background-color: var(--admin-navy-light);
-  box-shadow: 0 10px 22px rgba(47, 111, 237, 0.22);
-}
-
-.save-button:disabled {
-  background-color: #aab5c2;
-  cursor: not-allowed;
-}
-
-.consultas-toolbar {
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto 1.8rem;
-  display: flex;
-  justify-content: center;
-}
-
-.consulta-detail {
-  background-color: #ffffff;
-  border: 1px solid #dfe6ef;
-  border-radius: 18px;
-  padding: 2rem;
-  box-shadow: 0 18px 45px rgba(18, 42, 72, 0.08);
-}
-
-.consulta-detail-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  padding-bottom: 1.3rem;
-  margin-bottom: 1.4rem;
-  border-bottom: 1px solid #e6ebf2;
-}
-
-.consulta-detail-label {
-  display: block;
-  margin-bottom: 0.45rem;
-  color: #6f7d91;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.consulta-detail-header h2 {
-  margin: 0;
-  color: #10233d;
-  font-size: 2rem;
-  line-height: 1.15;
-}
-
-.consulta-detail-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.3rem;
-}
-
-.consulta-detail-group {
-  padding: 1.1rem 1.2rem;
-  background-color: #f7f9fc;
-  border: 1px solid #e3e9f1;
-  border-radius: 13px;
-}
-
-.consulta-detail-title {
-  display: block;
-  margin-bottom: 0.8rem;
-  color: #40526b;
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.consulta-detail-group p {
-  margin: 0.45rem 0;
-  color: #26364d;
-  line-height: 1.5;
-}
-
-.consulta-detail-group strong {
-  color: #13243b;
-}
-
 .consulta-message {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #ffffff;
-  border-left: 4px solid #2f6fed;
+  margin-top: 16px;
+  padding: 16px;
+
+  border-left: 4px solid var(--admin-blue);
   border-radius: 8px;
+
+  background-color: #ffffff;
 }
 
 .consulta-message strong {
   display: block;
-  margin-bottom: 0.45rem;
+  margin-bottom: 7px;
 }
 
 .consulta-message p {
   margin: 0;
 }
 
+/* =====================================================
+   CAMBIO DE ESTADO
+===================================================== */
 
-.consulta-detail-group label {
+.detail-status-section {
+  margin-top: 22px;
+  padding-top: 22px;
+
+  border-top: 1px solid var(--admin-border);
+}
+
+.consulta-detail-group label,
+.detail-status-section label {
   display: block;
-  margin-bottom: 0.65rem;
-  color: #13243b;
+  margin-bottom: 10px;
+
+  color: var(--admin-navy);
   font-weight: 700;
 }
 
-.consulta-detail-group select {
+.consulta-detail-group select,
+.detail-status-section select {
   width: 100%;
-  padding: 0.85rem 1rem;
+  margin-bottom: 14px;
+  padding: 13px 14px;
+
   border: 1px solid #ccd6e3;
   border-radius: 10px;
+
   background-color: #ffffff;
-  color: #17283f;
-  font-size: 0.95rem;
+  color: var(--admin-text);
+  font: inherit;
+
   outline: none;
   cursor: pointer;
+
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.consulta-detail-group select:focus {
-  border-color: #2f6fed;
+.consulta-detail-group select:focus,
+.detail-status-section select:focus {
+  border-color: var(--admin-blue);
   box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.12);
 }
 
-.consulta-detail-group select:disabled {
+.consulta-detail-group select:disabled,
+.detail-status-section select:disabled {
   background-color: #eef2f7;
+  color: var(--admin-text-soft);
   cursor: not-allowed;
 }
 
 .save-button {
   width: 100%;
-  padding: 0.95rem 1rem;
-  border: none;
-  border-radius: 11px;
-  background-color: #102943;
+  padding: 14px 18px;
+
+  background-color: var(--admin-navy);
   color: #ffffff;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
 }
 
 .save-button:hover:not(:disabled) {
-  background-color: #173b61;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(16, 41, 67, 0.2);
+  background-color: var(--admin-navy-light);
+  box-shadow: 0 10px 22px rgba(16, 41, 67, 0.2);
 }
 
 .save-button:disabled {
@@ -714,28 +657,256 @@
   box-shadow: none;
 }
 
-.consultas-toolbar input {
-  width: min(100%, 620px);
-  padding: 1rem 1.1rem;
-  border: 1px solid #d2dbe7;
-  border-radius: 12px;
-  font-size: 1rem;
-  background-color: #ffffff;
-  color: #14233a;
-  outline: none;
-  box-shadow: 0 8px 22px rgba(18, 42, 72, 0.06);
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+/* =====================================================
+   MENSAJES
+===================================================== */
+
+.admin-message {
+  padding: 28px 0;
+
+  color: var(--admin-text-soft);
+  text-align: center;
 }
 
-.consultas-toolbar input:focus {
-  border-color: #2f6fed;
-  box-shadow: 0 0 0 4px rgba(47, 111, 237, 0.12);
-  transform: translateY(-1px);
+.admin-error {
+  color: #a32929;
 }
 
-.consultas-toolbar input::placeholder {
-  color: #7b8798;
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+  .admin-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+
+  .consulta-main {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .consulta-actions {
+    justify-content: space-between;
+  }
+
+  .consulta-detail {
+    position: static;
+  }
+}
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width: 600px) {
+  .admin-page {
+    padding: 16px;
+
+    background:
+      linear-gradient(
+        180deg,
+        var(--admin-navy) 0,
+        var(--admin-navy) 245px,
+        var(--admin-background) 245px,
+        var(--admin-background) 100%
+      );
+  }
+
+  /* Encabezado */
+
+  .admin-header {
+    margin-bottom: 20px;
+    padding: 18px;
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+
+    border-radius: 15px;
+  }
+
+  .admin-header h1 {
+    font-size: 2rem;
+  }
+
+  .admin-welcome {
+    margin-top: 6px;
+    font-size: 0.95rem;
+  }
+
+  .logout-button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  /* Resumen en dos columnas */
+
+  .admin-summary {
+    margin-bottom: 20px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .summary-card {
+    min-height: 105px;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .summary-card span {
+    margin-bottom: 12px;
+    font-size: 0.82rem;
+  }
+
+  .summary-card strong {
+    font-size: 2rem;
+  }
+
+  /* Buscador */
+
+  .consultas-toolbar {
+    margin-bottom: 18px;
+  }
+
+  .consultas-toolbar input,
+  .consultas-heading input {
+    width: 100%;
+    padding: 13px 14px;
+    font-size: 0.95rem;
+  }
+
+  /* Sección */
+
+  .consultas-section {
+    padding: 16px;
+    border-radius: 15px;
+  }
+
+  .consultas-heading {
+    margin-bottom: 18px;
+
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .consultas-heading h2 {
+    font-size: 1.55rem;
+  }
+
+  /* Tarjetas */
+
+  .consultas-list {
+    gap: 12px;
+  }
+
+  .consulta-card {
+    padding: 17px 16px 17px 20px;
+    border-radius: 13px;
+  }
+
+  .consulta-card:hover {
+    transform: none;
+  }
+
+  .consulta-main {
+    gap: 16px;
+  }
+
+  .consulta-info h3 {
+    margin-bottom: 5px;
+    font-size: 1.08rem;
+  }
+
+  .consulta-info p {
+    margin-bottom: 12px;
+    font-size: 0.92rem;
+  }
+
+  .consulta-meta {
+    gap: 7px;
+  }
+
+  .consulta-meta span {
+    padding: 6px 9px;
+    font-size: 0.8rem;
+  }
+
+  /* Estado y detalle en una fila */
+
+  .consulta-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .estado-badge {
+    flex: 1;
+    padding: 9px 10px;
+  }
+
+  .detail-button {
+    flex: 1;
+    padding: 10px 12px;
+  }
+
+  /* Detalle */
+
+  .consulta-detail {
+    min-height: auto;
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  .consulta-detail-header {
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .consulta-detail-header h2 {
+    font-size: 1.45rem;
+  }
+
+  .consulta-detail-group,
+  .detail-item {
+    padding: 14px;
+  }
+
+  .consulta-message {
+    padding: 14px;
+  }
+}
+
+/* =====================================================
+   CELULARES MUY ANGOSTOS
+===================================================== */
+
+@media (max-width: 380px) {
+  .admin-page {
+    padding: 12px;
+  }
+
+  .admin-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .consulta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detail-button,
+  .estado-badge {
+    width: 100%;
+  }
 }
