@@ -13,37 +13,7 @@ const crearConsulta = async (req, res) => {
       medioContactoPreferido,
     } = req.body;
 
-    if (
-      !nombre ||
-      !apellido ||
-      !email ||
-      !telefono ||
-      !areaConsulta ||
-      !mensaje ||
-      !medioContactoPreferido
-    ) {
-      return res.status(400).json({
-        message: "Todos los campos obligatorios deben estar completos",
-      });
-    }
-
-    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailValido.test(email.trim())) {
-      return res.status(400).json({
-        message: "El email ingresado no es válido",
-      });
-    }
-
-    const mediosPermitidos = ["whatsapp", "telefono", "email"];
-
-    if (!mediosPermitidos.includes(medioContactoPreferido)) {
-      return res.status(400).json({
-        message: "El medio de contacto seleccionado no es válido",
-      });
-    }
-
-    const [result] = await pool.query(
+    const [result] = await pool.execute(
       `
       INSERT INTO consultas (
         nombre,
@@ -57,29 +27,29 @@ const crearConsulta = async (req, res) => {
       VALUES (?, ?, ?, ?, ?, ?, ?)
       `,
       [
-        nombre.trim(),
-        apellido.trim(),
-        email.trim().toLowerCase(),
-        telefono.trim(),
-        areaConsulta.trim(),
-        mensaje.trim(),
+        nombre,
+        apellido,
+        email,
+        telefono,
+        areaConsulta,
+        mensaje,
         medioContactoPreferido,
       ]
     );
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Consulta guardada correctamente",
       id: result.insertId,
     });
   } catch (error) {
     console.error("Error al guardar la consulta:", error);
 
-    res.status(500).json({
-      message: "Error interno del servidor",
+    return res.status(500).json({
+      message:
+        "No se pudo guardar la consulta en este momento",
     });
   }
 };
-
 //obtengo las consultas de la db
 const obtenerConsultas = async (req, res) => {
   try {
@@ -115,6 +85,14 @@ const actualizarEstadoConsulta = async (req, res) => {
     const { id } = req.params;
     const { estado } = req.body;
 
+    const idConsulta = Number(id);
+
+    if (!Number.isInteger(idConsulta) || idConsulta <= 0) {
+      return res.status(400).json({
+        message: "El identificador de la consulta no es válido",
+      });
+    }
+
     const estadosPermitidos = [
       "nueva",
       "contactada",
@@ -128,13 +106,13 @@ const actualizarEstadoConsulta = async (req, res) => {
       });
     }
 
-    const [consultas] = await pool.query(
+    const [consultas] = await pool.execute(
       `
       SELECT id
       FROM consultas
       WHERE id = ?
       `,
-      [id]
+      [idConsulta]
     );
 
     if (consultas.length === 0) {
@@ -143,16 +121,16 @@ const actualizarEstadoConsulta = async (req, res) => {
       });
     }
 
-    await pool.query(
+    await pool.execute(
       `
       UPDATE consultas
       SET estado = ?
       WHERE id = ?
       `,
-      [estado, id]
+      [estado, idConsulta]
     );
 
-    const [consultaActualizada] = await pool.query(
+    const [consultaActualizada] = await pool.execute(
       `
       SELECT
         id,
@@ -169,17 +147,17 @@ const actualizarEstadoConsulta = async (req, res) => {
       FROM consultas
       WHERE id = ?
       `,
-      [id]
+      [idConsulta]
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Estado actualizado correctamente",
       consulta: consultaActualizada[0],
     });
   } catch (error) {
     console.error("Error al actualizar el estado:", error);
 
-    res.status(500).json({
+    return res.status(500).json({
       message: "Error interno del servidor",
     });
   }
